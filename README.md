@@ -55,8 +55,11 @@ A modern, responsive currency converter application with real-time exchange rate
    ```
 
 3. **Environment Setup**
-   - Create a `.env` file in the project root
-   - Add your Open Exchange Rates API key:
+   - Copy the example environment file to create your own:
+     ```bash
+     Copy-Item .env.example .env
+     ```
+   - Open the `.env` file and add your Open Exchange Rates API key:
      ```
      API_KEY=your_api_key_here
      PORT=3000
