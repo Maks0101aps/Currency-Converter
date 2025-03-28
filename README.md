@@ -33,7 +33,7 @@ A modern, responsive currency converter application with real-time exchange rate
 - **Dotenv**: Environment variable management for secure configuration
 
 ### APIs
-- **Open Exchange Rates API**: Real-time currency exchange rate data
+- **Open Exchange Rates API**: Free tier for real-time currency exchange rate data
 
 ## How to Run the Project
 
@@ -54,7 +54,7 @@ A modern, responsive currency converter application with real-time exchange rate
    npm install
    ```
 
-3. **Environment Setup**
+3. **Environment Setup** (Optional)
    - Copy the example environment file to create your own:
      ```bash
      Copy-Item .env.example .env
@@ -63,11 +63,12 @@ A modern, responsive currency converter application with real-time exchange rate
      ```bash
      touch .env
      ```
-   - Open the `.env` file and add your Open Exchange Rates API key:
+   - The `.env` file can be used to configure the port:
      ```
-     API_KEY=your_api_key_here
      PORT=3000
+     NODE_ENV=development
      ```
+   - Note: This project uses a free API that doesn't require an API key
 
 4. **Start the server**
    ```bash
