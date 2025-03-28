@@ -1,0 +1,317 @@
+/* Custom styles for Currency Converter with Banking Design */
+
+/* Copyright (c) 2025 Maks0101aps. All rights reserved. */
+
+:root {
+    --primary-50: #eff6ff;
+    --primary-100: #dbeafe;
+    --primary-200: #bfdbfe;
+    --primary-300: #93c5fd;
+    --primary-400: #60a5fa;
+    --primary-500: #3b82f6;
+    --primary-600: #2563eb;
+    --primary-700: #1d4ed8;
+    --primary-800: #1e40af;
+    --primary-900: #1e3a8a;
+    
+    --secondary-50: #f8fafc;
+    --secondary-100: #f1f5f9;
+    --secondary-200: #e2e8f0;
+    --secondary-300: #cbd5e1;
+    --secondary-400: #94a3b8;
+    --secondary-500: #64748b;
+    --secondary-600: #475569;
+    --secondary-700: #334155;
+    --secondary-800: #1e293b;
+    --secondary-900: #0f172a;
+    
+    --accent: #8B5CF6;
+    --success: #10B981;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    
+    --background: #ffffff;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --border-color: #e2e8f0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    background-color: var(--background);
+}
+
+/* Card Style */
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+/* Input Style */
+input, select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+/* Table Style */
+table {
+    color: var(--text-color);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Bank card style elements */
+.card-shadow {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Gradient background for special elements */
+.gradient-bg {
+    background: linear-gradient(135deg, #0ea5e9 0%, #1e3a8a 100%);
+}
+
+/* Easter Eggs - Maks0101aps */
+.maks-easter-egg {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Show easter egg on specific key combination */
+body.show-easter-egg .maks-easter-egg {
+    opacity: 1;
+    animation: fadePulse 1.5s infinite;
+}
+
+/* Secret key combination: Up, Up, Down, Down, M, A, K, S */
+@keyframes fadePulse {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 1; }
+}
+
+/* Hidden credit in page corners */
+.container::before {
+    content: "M0101";
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    font-size: 8px;
+    opacity: 0.3;
+    color: #1e3a8a;
+    pointer-events: none;
+}
+
+.container::after {
+    content: "aps";
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    font-size: 8px;
+    opacity: 0.3;
+    color: #0ea5e9;
+    pointer-events: none;
+}
+
+/* Animation for loading state */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    animation: pulse 1.5s infinite;
+}
+
+.loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e2e8f0;
+    border-top: 4px solid #0284c7;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 11;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 0.5; }
+}
+
+/* Transitions */
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+/* Hover effects for table rows */
+.currency-item:hover {
+    background-color: #f1f5f9;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Gradient text for easter eggs */
+.gradient-text {
+    background: linear-gradient(135deg, #0ea5e9 0%, #1e3a8a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+/* Notification container */
+.notification-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+}
+
+/* Notification styling */
+.notification {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    animation: slide-in 0.3s ease-out forwards;
+    background-color: white;
+    border-left: 4px solid #ccc;
+}
+
+.notification-hide {
+    animation: slide-out 0.3s ease-in forwards;
+}
+
+.notification-icon {
+    margin-right: 12px;
+    font-size: 18px;
+}
+
+.notification-message {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.notification-close {
+    margin-left: 12px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.notification-close:hover {
+    opacity: 1;
+}
+
+/* Notification types */
+.notification-success {
+    border-left-color: #28a745;
+    background-color: #f0f9f0;
+}
+
+.notification-success .notification-icon {
+    color: #28a745;
+}
+
+.notification-error {
+    border-left-color: #dc3545;
+    background-color: #fdf0f0;
+}
+
+.notification-error .notification-icon {
+    color: #dc3545;
+}
+
+.notification-warning {
+    border-left-color: #ffc107;
+    background-color: #fffbf0;
+}
+
+.notification-warning .notification-icon {
+    color: #ffc107;
+}
+
+.notification-info {
+    border-left-color: #17a2b8;
+    background-color: #f0f9fc;
+}
+
+.notification-info .notification-icon {
+    color: #17a2b8;
+}
+
+/* Notification animations */
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-out {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+} 

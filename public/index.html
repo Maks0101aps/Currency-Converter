@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange | Maks0101aps</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        accent: '#1e3a8a',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
+</head>
+<body class="bg-secondary-50 font-['Inter',sans-serif]">
+    <!-- Hidden Easter Egg Text -->
+    <div class="absolute top-0 left-0 p-1 text-[8px] text-gray-200 opacity-20 hover:opacity-80 transition-opacity cursor-default">aps</div>
+    <div class="absolute bottom-0 right-0 p-1 text-[8px] text-gray-200 opacity-20 hover:opacity-80 transition-opacity cursor-default">M0101</div>
+
+    <div class="container mx-auto p-4 max-w-4xl">
+        <header class="py-5 flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold text-accent flex items-center">
+                    <i class="fas fa-exchange-alt mr-3 text-primary-600"></i>
+                    Currency Exchange
+                    <span class="hidden maks-easter-egg">Maks0101aps</span>
+                </h1>
+                <p class="text-secondary-500 mt-1">Fast and secure currency conversion</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex items-center">
+                <span class="text-sm text-secondary-500 flex items-center mr-4">
+                    <i class="fas fa-clock mr-2 text-primary-600"></i>
+                    Last updated: <span id="updateTime" class="ml-1 font-medium">...</span>
+                </span>
+                <a href="https://github.com/Maks0101aps" target="_blank" class="text-secondary-500 hover:text-accent transition-colors" title="Visit Maks0101aps on GitHub">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <!-- Currency Converter Card -->
+            <div class="card max-w-4xl mx-auto p-6 rounded-xl shadow-lg border border-secondary-200 mb-8">
+                <div class="flex items-center mb-5">
+                    <div class="bg-primary-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-exchange-alt text-primary-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-secondary-800">Currency Converter</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- From Currency -->
+                    <div>
+                        <label class="block text-sm font-medium text-secondary-500 mb-2">From Currency</label>
+                        <div class="relative">
+                            <div class="flex overflow-hidden rounded-lg border border-secondary-200 focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500">
+                                <select id="fromCurrency" class="flex-grow appearance-none px-4 py-3 bg-transparent focus:outline-none text-secondary-800">
+                                    <option value="USD">USD - US Dollar</option>
+                                </select>
+                                <div class="px-3 flex items-center bg-secondary-50">
+                                    <span id="fromCurrencyFlag" class="fi fi-us mr-2"></span>
+                                    <i class="fas fa-chevron-down text-secondary-400 pointer-events-none"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- To Currency -->
+                    <div>
+                        <label class="block text-sm font-medium text-secondary-500 mb-2">To Currency</label>
+                        <div class="relative">
+                            <div class="flex overflow-hidden rounded-lg border border-secondary-200 focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500">
+                                <select id="toCurrency" class="flex-grow appearance-none px-4 py-3 bg-transparent focus:outline-none text-secondary-800">
+                                    <option value="EUR">EUR - Euro</option>
+                                </select>
+                                <div class="px-3 flex items-center bg-secondary-50">
+                                    <span id="toCurrencyFlag" class="fi fi-eu mr-2"></span>
+                                    <i class="fas fa-chevron-down text-secondary-400 pointer-events-none"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Amount -->
+                    <div>
+                        <label for="amount" class="block text-sm font-medium text-secondary-500 mb-2">Amount</label>
+                        <div class="relative">
+                            <div class="flex overflow-hidden rounded-lg border border-secondary-200 focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500">
+                                <input type="number" id="amount" value="1" min="0" step="0.01" class="flex-grow w-full px-4 py-3 appearance-none focus:outline-none text-secondary-800">
+                                <div class="px-3 flex items-center bg-secondary-50">
+                                    <span id="amountCurrencyCode" class="text-secondary-600 font-medium">USD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Result -->
+                    <div>
+                        <label class="block text-sm font-medium text-secondary-500 mb-2">Result</label>
+                        <div class="relative">
+                            <div class="flex overflow-hidden rounded-lg border border-secondary-200 bg-secondary-50">
+                                <input type="text" id="result" readonly class="flex-grow w-full px-4 py-3 appearance-none bg-secondary-50 outline-none font-medium text-secondary-800">
+                                <div class="px-3 flex items-center bg-secondary-100">
+                                    <span id="resultCurrencyCode" class="text-secondary-600 font-medium">EUR</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex flex-wrap items-center justify-between mt-6 gap-4">
+                    <div class="flex items-center space-x-3">
+                        <button id="swapButton" class="flex items-center justify-center bg-secondary-100 hover:bg-secondary-200 text-secondary-600 p-2 rounded-lg transition-colors">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                        <button id="multiConvertButton" class="flex items-center justify-center bg-secondary-100 hover:bg-secondary-200 text-secondary-600 px-3 py-2 rounded-lg transition-colors">
+                            <i class="fas fa-calculator mr-2"></i>
+                            Multi-Convert
+                        </button>
+                        <button id="exportButton" class="flex items-center justify-center bg-secondary-100 hover:bg-secondary-200 text-secondary-600 px-3 py-2 rounded-lg transition-colors">
+                            <i class="fas fa-download mr-2"></i>
+                            Export
+                        </button>
+                    </div>
+                    <button id="convertButton" class="px-5 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg shadow-sm transition-colors">
+                        <i class="fas fa-sync-alt mr-2"></i>
+                        Convert Now
+                    </button>
+                </div>
+                
+                <!-- Offline Status Indicator -->
+                <div id="offlineAlert" class="hidden mt-4 px-4 py-2 bg-warning-100 text-warning-800 rounded-lg flex items-center">
+                    <i class="fas fa-wifi-slash mr-2"></i>
+                    <span>You're offline. Using cached rates from <span id="cachedTime">...</span></span>
+                </div>
+
+                <!-- Multi-Currency Conversion Results -->
+                <div id="multiConversionResults" class="hidden mt-6 overflow-hidden">
+                    <h3 class="text-lg font-semibold text-secondary-700 mb-3">Multi-Currency Conversion</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full border-collapse">
+                            <thead>
+                                <tr>
+                                    <th class="py-3 px-4 bg-secondary-50 text-left text-sm font-medium text-secondary-500 border-b border-secondary-200">Currency</th>
+                                    <th class="py-3 px-4 bg-secondary-50 text-right text-sm font-medium text-secondary-500 border-b border-secondary-200">Value</th>
+                                    <th class="py-3 px-4 bg-secondary-50 text-right text-sm font-medium text-secondary-500 border-b border-secondary-200">Exchange Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody id="multiConversionTableBody">
+                                <!-- Will be filled by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exchange Rates Card -->
+            <div class="mt-8 bg-white rounded-xl shadow-lg p-6 border border-secondary-200">
+                <h2 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                    <i class="fas fa-chart-line mr-2 text-primary-600"></i>
+                    Latest Exchange Rates
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead>
+                            <tr class="bg-secondary-100">
+                                <th class="py-3 px-4 border-b text-left font-semibold text-secondary-700">Currency</th>
+                                <th class="py-3 px-4 border-b text-right font-semibold text-secondary-700">Rate (vs USD)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ratesTable" class="divide-y divide-secondary-200">
+                            <!-- Rates will be loaded dynamically -->
+                            <tr>
+                                <td colspan="2" class="py-4 px-4 text-center text-secondary-500">
+                                    <i class="fas fa-spinner fa-spin mr-2"></i>
+                                    Loading exchange rates...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Bank Features -->
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white rounded-xl shadow-md p-5 border border-secondary-200">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-primary-100 p-3 rounded-full text-primary-600">
+                            <i class="fas fa-shield-alt text-xl"></i>
+                        </div>
+                        <h3 class="ml-3 font-semibold text-secondary-800">Secure Exchange</h3>
+                    </div>
+                    <p class="text-secondary-600 text-sm">Your currency exchanges are protected with the highest security standards.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-5 border border-secondary-200">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-primary-100 p-3 rounded-full text-primary-600">
+                            <i class="fas fa-bolt text-xl"></i>
+                        </div>
+                        <h3 class="ml-3 font-semibold text-secondary-800">Instant Conversion</h3>
+                    </div>
+                    <p class="text-secondary-600 text-sm">Get real-time rates and convert currencies instantly with zero waiting time.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-5 border border-secondary-200">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-primary-100 p-3 rounded-full text-primary-600">
+                            <i class="fas fa-globe text-xl"></i>
+                        </div>
+                        <h3 class="ml-3 font-semibold text-secondary-800">Global Currencies</h3>
+                    </div>
+                    <p class="text-secondary-600 text-sm">Support for major world currencies with competitive exchange rates.</p>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="mt-12 mb-6 text-center text-secondary-500 text-sm border-t border-secondary-200 pt-6">
+            <p>Exchange rates provided by <a href="https://open.er-api.com/" target="_blank" class="text-primary-600 hover:underline">Exchange Rate API</a></p>
+            <p class="mt-2">© 2025 Currency Exchange | Developed by <a href="https://github.com/Maks0101aps" target="_blank" class="text-primary-600 hover:underline">Maks0101aps</a> | All rights reserved</p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/app.js"></script>
+</body>
+</html> 
