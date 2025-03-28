@@ -1,6 +1,6 @@
 # Currency Converter
 
-![Preview](Preview.png)
+![Preview](Preview.PNG)
 
 A modern, responsive currency converter application with real-time exchange rates, multiple currency support, and banking-style design.
 
